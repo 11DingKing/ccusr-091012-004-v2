@@ -135,14 +135,15 @@ class GoodsSerializer(serializers.ModelSerializer):
     variety_name = serializers.CharField(source='variety.name', read_only=True)
     category_name = serializers.CharField(source='variety.category.name', read_only=True)
     unit_name = serializers.CharField(source='variety.category.unit.name', read_only=True)
+    area_name = serializers.CharField(source='area.name', read_only=True)
     is_warning = serializers.BooleanField(read_only=True)
-    
+
     class Meta:
         model = Goods
         fields = [
             'id', 'name', 'code', 'variety', 'variety_name',
             'category_name', 'unit_name', 'specification',
-            'quantity', 'warning_threshold', 'location',
+            'quantity', 'warning_threshold', 'location', 'area', 'area_name',
             'remark', 'is_active', 'is_warning',
             'created_at', 'updated_at'
         ]

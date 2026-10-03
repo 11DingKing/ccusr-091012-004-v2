@@ -109,6 +109,10 @@ class Goods(models.Model):
     quantity = models.DecimalField('库存数量', max_digits=12, decimal_places=2, default=0)
     warning_threshold = models.DecimalField('预警阈值', max_digits=12, decimal_places=2, default=10)
     location = models.CharField('存放位置', max_length=100, blank=True)
+    area = models.ForeignKey(
+        'inventory.StorageArea', on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='goods', verbose_name='所属保管区'
+    )
     remark = models.TextField('备注', blank=True)
     is_active = models.BooleanField('是否启用', default=True)
     created_at = models.DateTimeField('创建时间', auto_now_add=True)
